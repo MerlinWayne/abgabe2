@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            ARSnova Charts !
+        </title>
+    <h1 style="color:green;margin-left:30px;">ARSnova Charts</h1>
+        <script src="jquery-1.12.0.min.js"></script>
+        <script src="Chart.js"></script>
+    </head>
+    <body>
+        <canvas id="c" width="1200" height="3900">
+            <script>
+var xmlHttp = null;
+try {
+    xmlHttp = new XMLHttpRequest();
+} catch(e) {
+    // Fehlerbehandlung, wenn die Schnittstelle vom Browser nicht unterstützt wird.
+}
+if (xmlHttp) {
+    xmlHttp.open('GET', 'https://arsnova.eu/api/statistics/', true);
+    xmlHttp.onreadystatechange = function () {
+        var str = (String(xmlHttp.responseText)).split(',');
+        var number = /\d+/g;
+        if (xmlHttp.readyState == 4) {
+            
+         
+            
+            
+            
+            $(document).ready(function(){
+                    
+                    
+                   var ctx = $("#c").get(0).getContext("2d");
+                   
+                   var data = {
+    labels: ["answers", "LectureQuestions", "PreprationQuestions",
+        "openSessions", "closedSessions", "creators", "activeUsers",
+         "activeStudents", "loggedInUsers", "interposedQuestions",
+          "conceptQuestions", "questions", "sessions" ],
+    datasets: [
+        {
+            fillColor: "rgba(151,187,205,5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: [str[0].match(number), str[1].match(number), str[2].match(number),
+                str[3].match(number), str[4].match(number), str[5].match(number),
+                str[6].match(number), str[7].match(number), str[8].match(number),
+                str[9].match(number), str[10].match(number), str[11].match(number),
+                str[12].match(number)]
+        }
+    ]
+    };
+                   
+     /*              
+         var data = [
+                    {
+                        value:str[0].match(number),
+                        color:"#003366",
+                        highlight:"#000000",
+                        label:"answers"
+                    },
+                    {
+                        value:str[1].match(number),
+                        color:"#ff0000",
+                        highlight:"#000000",
+                        label:"LectureQuestions"
+                    },
+                    {
+                        value:str[2].match(number),
+                        color:"#FF0000",
+                        highlight:"#000000",
+                        label:"PreprationQuestions"
+                    },
+                    {
+                        value:str[3].match(number),
+                        color:"#66ff33",
+                        highlight:"#000000",
+                        label:"openSessions"
+                    },
+                    {
+                        value:str[4].match(number),
+                        color:"#ff00ff",
+                        highlight:"#000000",
+                        label:"closedSessions"
+                    },
+                    {
+                        value:str[5].match(number),
+                        color:"#00ffcc",
+                        highlight:"#000000",
+                        label:"creators"
+                    },
+                    {
+                        value:str[6].match(number),
+                        color:"#ff3300",
+                        highlight:"#000000",
+                        label:"activeUsers"
+                    },
+                    {
+                        value:str[7].match(number),
+                        color:"#669900",
+                        highlight:"#000000",
+                        label:"activeStudents"
+                    },
+                    {
+                        value:str[8].match(number),
+                        color:"#990000",
+                        highlight:"#000000",
+                        label:"loggedInUsers"
+                    },
+                    {
+                        value:str[9].match(number),
+                        color:"#663300",
+                        highlight:"#000000",
+                        label:"interposedQuestions"
+                    },
+                    {
+                        value:str[10].match(number),
+                        color:"#cc66ff",
+                        highlight:"#000000",
+                        label:"conceptQuestions"
+                    },
+                    {
+                        value:str[11].match(number),
+                        color:"#669999",
+                        highlight:"#000000",
+                        label:"questions"
+                    },
+                    {
+                        value:str[12].match(number),
+                        color:"#ff99ff",
+                        highlight:"#000000",
+                        label:"sessions"
+                    }
+                ];
+                  //  }
+                
+            
+            //
+                //"#green"                
+           // document.writeln(str[n].match(number))
+            //ctx.fillRect(20,20,150,str[0].match(number)/100);
+            //ctx1.fillRect(20,20,150,str[1].match(number)/100);}
+                
+        */
+            var test = new Chart(ctx).Bar(data);
+   
+});
+
+            
+            
+            
+            
+            
+            
+            
+            
+        }
+    };
+    xmlHttp.send(null);
+}
+                
+window.setTimeout(function(){ document.location.reload(true); }, 30000);
+            </script>
+            
+            
+    </body>
+</html>>
